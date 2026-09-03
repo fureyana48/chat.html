@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JARPIS nya si Sandi</title>
+    <title>AI Assistant by Sandi Septian Maulana</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1e1e2e; color: #cdd6f4; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; box-sizing: border-box; }
         .back-link { align-self: flex-start; margin-bottom: 15px; color: #89b4fa; text-decoration: none; font-size: 0.9em; font-weight: bold; transition: 0.2s; }
@@ -23,16 +23,18 @@
 </head>
 <body>
 
-<a href="/" class="back-link">&larr; Balik ke Home / CV Sandi</a>
+<a href="/" class="back-link">&larr; Kembali ke Halaman Utama</a>
 
 <div class="chat-container">
-    <h2>JARPIS nya si Sandi ala2 ngikut gaya ayronmen</h2>
+    <h2>Inget Simsimi gak? nah ini mirip dia dah
+    </br>lu kata2in aja dia
+    </h2>
     <div id="chat-box">
-        <div class="msg ai-msg">apa njir? iye gw jarpisnya si Sandi. lau mo nanya ape?</div>
+        <div class="msg ai-msg">ape ngab? iye knape? sini cerita aje</div>
     </div>
     <div class="input-area">
-        <input type="text" id="userInput" placeholder="Ketik pesenan lu di mari, pesen ayam paket goceng gw tabok lu ye..." onkeypress="if(event.key === 'Enter') sendMessage()">
-        <button onclick="sendMessage()" id="sendBtn">cium dulu, baru boleh mencet ini tombol</button>
+        <input type="text" id="userInput" placeholder="ngetiknya disini, jgn disono" onkeypress="if(event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()" id="sendBtn">cium dulu, baru boleh kirim</button>
     </div>
 </div>
 
@@ -78,11 +80,11 @@
 
         } catch (error) {
             console.error("Detail Error:", error);
-            chatBox.innerHTML += `<div class="msg ai-msg" style="color: #f38ba8;">Error: lagi males mikir gw ah. (${error.message})</div>`;
+            chatBox.innerHTML += `<div class="msg ai-msg" style="color: #f38ba8;">Error: males ah, pgen beli truck (${error.message})</div>`;
         } finally {
             inputField.disabled = false;
             sendBtn.disabled = false;
-            sendBtn.innerHTML = "cium dulu, baru boleh mencet ini tombol";
+            sendBtn.innerHTML = "cium dulu, baru boleh kirim";
             inputField.focus();
             chatBox.scrollTop = chatBox.scrollHeight;
         }
