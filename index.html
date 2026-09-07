@@ -27,7 +27,7 @@
 
 <div class="chat-container">
     <h2>Inget Simsimi gak? nah ini mirip dia dah
-    </br>lu kata2in aja dia
+    <br>lu kata2in aja dia
     </h2>
     <div id="chat-box">
         <div class="msg ai-msg">ape ngab? iye knape? sini cerita aje</div>
@@ -56,11 +56,17 @@
         sendBtn.innerHTML = "bentar, gw mikir dulu...";
         
         try {
-            // Menggunakan jalur relatif aman dari HTTPS ke HTTPS domain yang sama
-            const response = await fetch('https://sandiseptianmaulana.dpdns.org/api/chat', {
+            // Nembak API OpenRouter Langsung dari Browser
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer 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',
+                    'HTTP-Referer': 'https://fureyana48.github.io', 
+                    'X-Title': 'JARPIS'
+                },
                 body: JSON.stringify({
+                    model: "openrouter/auto",
                     messages: [{ role: 'user', content: text }]
                 })
             });
@@ -68,14 +74,14 @@
             const data = await response.json();
             
             if (!response.ok) {
-                throw new Error(data.error || `Server error: ${response.status}`);
+                throw new Error(data.error?.message || `Server error: ${response.status}`);
             }
 
-            if (!data.message || !data.message.content) {
+            if (!data.choices || data.choices.length === 0) {
                 throw new Error("Format respons dari server tidak valid.");
             }
 
-            const aiReply = data.message.content.replace(/\n/g, '<br>');
+            const aiReply = data.choices[0].message.content.replace(/\n/g, '<br>');
             chatBox.innerHTML += `<div class="msg ai-msg">${aiReply}</div>`;
 
         } catch (error) {
